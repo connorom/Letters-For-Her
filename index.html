@@ -1,1 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Letters For Her</title>
 
+<style>
+body{
+    margin:0;
+    font-family: Georgia, serif;
+    background:#f6f0e8;
+    color:#4b3f35;
+    min-height:100vh;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:40px 20px;
+    text-align:center;
+}
+
+h1{
+    font-size:3rem;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    font-size:1.1rem;
+    margin-bottom:40px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.letter{
+    background:white;
+    padding:25px;
+    border-radius:18px;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    text-decoration:none;
+    color:inherit;
+    transition:.25s;
+}
+
+.letter:hover{
+    transform:translateY(-5px);
+}
+
+.locked{
+    opacity:.55;
+    pointer-events:none;
+}
+
+.emoji{
+    font-size:2rem;
+}
+
+.countdown{
+    margin-top:50px;
+    background:white;
+    padding:20px;
+    border-radius:18px;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Letters For Her</h1>
+
+<p class="subtitle">
+While I'm away, there's a letter waiting for you every week. ❤️
+</p>
+
+<div class="grid">
+
+<a id="l1" class="letter" href="letter1.html">
+<div class="emoji">💌</div>
+<h3>Letter 1</h3>
+<p>Open now</p>
+</a>
+
+<a id="l2" class="letter" href="letter2.html">
+<div class="emoji">✉️</div>
+<h3>Letter 2</h3>
+<p>Unlocks June 13</p>
+</a>
+
+<a id="l3" class="letter" href="letter3.html">
+<div class="emoji">✉️</div>
+<h3>Letter 3</h3>
+<p>Unlocks June 20</p>
+</a>
+
+<a id="l4" class="letter" href="letter4.html">
+<div class="emoji">✉️</div>
+<h3>Letter 4</h3>
+<p>Unlocks June 27</p>
+</a>
+
+<a id="l5" class="letter" href="letter5.html">
+<div class="emoji">✉️</div>
+<h3>Letter 5</h3>
+<p>Unlocks July 4</p>
+</a>
+
+<a class="letter" href="missme.html">
+<div class="emoji">❤️</div>
+<h3>Open When You Miss Me</h3>
+<p>Always available</p>
+</a>
+
+</div>
+
+<div class="countdown">
+<h3>Until We're Together Again</h3>
+<p id="timer"></p>
+</div>
+
+</div>
+
+<script>
+
+const unlocks = {
+l2:new Date("2026-06-13"),
+l3:new Date("2026-06-20"),
+l4:new Date("2026-06-27"),
+l5:new Date("2026-07-04")
+};
+
+for (const id in unlocks){
+    const el=document.getElementById(id);
+
+    if(new Date() < unlocks[id]){
+        el.classList.add("locked");
+        el.innerHTML =
+        `<div class="emoji">🔒</div>` +
+        el.innerHTML;
+    }
+}
+
+const returnDate = new Date("2026-08-01");
+
+function updateCountdown(){
+
+const now = new Date();
+
+const diff = returnDate - now;
+
+if(diff <= 0){
+document.getElementById("timer").innerText =
+"❤️ He's back.";
+return;
+}
+
+const days = Math.floor(diff/(1000*60*60*24));
+
+document.getElementById("timer").innerText =
+days + " days remaining";
+}
+
+updateCountdown();
+setInterval(updateCountdown,1000);
+
+</script>
+
+</body>
+</html>
