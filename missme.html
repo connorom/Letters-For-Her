@@ -1,2 +1,166 @@
-<title>Read This When You Miss Me</title>
-<h1>Read This When You Miss Me❤️</h1>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Read This When You Miss Me ❤️</title>
+
+<style>
+
+body{
+    margin:0;
+    background:#f6f0e8;
+    font-family:Georgia, serif;
+    overflow:hidden;
+    height:100vh;
+}
+
+#buttonContainer{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+
+button{
+    font-size:24px;
+    padding:20px 35px;
+    border:none;
+    border-radius:20px;
+    cursor:pointer;
+    background:#8d6e63;
+    color:white;
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+.reason{
+    position:absolute;
+    max-width:300px;
+    font-size:24px;
+    color:#4b3f35;
+    text-align:center;
+
+    animation:fadeIn .4s ease;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:scale(.8);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+.back{
+    position:absolute;
+    bottom:20px;
+    left:20px;
+    text-decoration:none;
+    color:white;
+    background:#8d6e63;
+    padding:12px 18px;
+    border-radius:10px;
+}
+
+.title{
+    position:absolute;
+    width:100%;
+    text-align:center;
+    top:40px;
+    font-size:32px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="title">
+❤️ Read This When You Miss Me ❤️
+</div>
+
+<div id="buttonContainer">
+<button onclick="showReason()">
+💌 I Miss You
+</button>
+</div>
+
+<a class="back" href="index.html">
+Back to Mailbox
+</a>
+
+<script>
+
+const reasons = [
+
+"Because your smile can completely change my day.",
+
+"Because you make ordinary days feel important.",
+
+"Because I always want to tell you good news first.",
+
+"Because your laugh is contagious.",
+
+"Because you're beautiful when you're dressed up and when you're not.",
+
+"Because somehow your orange cat has become part of my life too.",
+
+"Because life is more fun with you in it.",
+
+"Because you're my favorite person to talk to.",
+
+"Because I miss you too.",
+
+"Because you make me want to be better.",
+
+"Because I still think about our favorite memories together.",
+
+"Because you always know how to make me smile.",
+
+"Because you're worth every mile between us.",
+
+"🐈 Orange Cat Bonus Reason: because your cat is ridiculous.",
+
+"❤️ July 10 is getting closer."
+];
+
+let currentReason = null;
+
+function showReason(){
+
+    if(currentReason){
+        currentReason.remove();
+    }
+
+    const reason =
+        reasons[Math.floor(Math.random()*reasons.length)];
+
+    const div = document.createElement("div");
+
+    div.className = "reason";
+
+    div.innerText = reason;
+
+    const x = Math.random() * (window.innerWidth - 350);
+    const y = Math.random() * (window.innerHeight - 200);
+
+    div.style.left = x + "px";
+    div.style.top = y + "px";
+
+    document.body.appendChild(div);
+
+    currentReason = div;
+}
+
+</script>
+
+</body>
+</html>
