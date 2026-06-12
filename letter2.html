@@ -1,2 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Letter 2</title>
-<h1>Letter 2</h1>
+
+<style>
+
+body{
+    margin:0;
+    background:#f6f0e8;
+    font-family:Georgia, serif;
+    text-align:center;
+    color:#4b3f35;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:40px 20px;
+}
+
+h1{
+    margin-bottom:10px;
+}
+
+.slot{
+    background:white;
+    border-radius:20px;
+    padding:40px;
+    margin:40px auto;
+    min-height:120px;
+    max-width:700px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:28px;
+}
+
+button{
+    background:#8d6e63;
+    color:white;
+    border:none;
+    padding:18px 35px;
+    font-size:22px;
+    border-radius:15px;
+    cursor:pointer;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+.back{
+    display:inline-block;
+    margin-top:40px;
+    text-decoration:none;
+    color:white;
+    background:#8d6e63;
+    padding:12px 20px;
+    border-radius:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🎰 Megan's Slot Machine 🎰</h1>
+
+<p>
+Every spin gives you something from Connor.
+</p>
+
+<div class="slot" id="result">
+
+Press SPIN ❤️
+
+</div>
+
+<button onclick="spin()">
+
+🎰 SPIN 🎰
+
+</button>
+
+<br>
+
+<a class="back" href="index.html">
+
+Back to Mailbox
+
+</a>
+
+</div>
+
+<script>
+
+const messages = [
+
+"❤️ Because your smile can completely change my day.",
+
+"🐈 The orange cat has committed tax fraud.",
+
+"💭 Connor is probably thinking about you right now.",
+
+"🏆 Best Girlfriend Award Winner: Megan.",
+
+"💌 I miss hearing about your day.",
+
+"🐈 Emergency Cat Bulletin: Chonk levels critical.",
+
+"❤️ One week down. Closer to July 10.",
+
+"😂 I guarantee you've shown someone a cat photo recently.",
+
+"💭 Remember when we _______?",
+
+"🏆 Most Likely To Receive Random Connor Thoughts.",
+
+"❤️ You're worth every mile.",
+
+"🐈 The cat requests additional snacks.",
+
+"💌 If you're reading this, I love you.",
+
+"🏆 Orange Cat Handler of the Year.",
+
+"😂 I know you're smiling right now."
+
+];
+
+function spin(){
+
+    const result =
+        document.getElementById("result");
+
+    result.innerHTML = "🎰 Spinning...";
+
+    setTimeout(()=>{
+
+        const choice =
+            messages[Math.floor(Math.random()*messages.length)];
+
+        result.innerHTML = choice;
+
+    },800);
+
+}
+
+</script>
+
+</body>
+</html>
