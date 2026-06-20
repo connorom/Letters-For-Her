@@ -1,2 +1,242 @@
-<title>Letter 3</title>
-<h1>Letter 3</h1>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Future Date Generator</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Georgia, serif;
+    background:#f6f0e8;
+    color:#4b3f35;
+    text-align:center;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:40px 20px;
+}
+
+h1{
+    margin-bottom:10px;
+}
+
+.subtitle{
+    opacity:.8;
+    margin-bottom:40px;
+}
+
+.card{
+    background:white;
+    border-radius:20px;
+    padding:40px;
+    min-height:150px;
+    max-width:700px;
+    margin:auto;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+#category{
+    opacity:.6;
+    margin-bottom:15px;
+    font-size:14px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+}
+
+#result{
+    font-size:30px;
+}
+
+button{
+    margin-top:25px;
+    border:none;
+    background:#8d6e63;
+    color:white;
+    padding:16px 28px;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:18px;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+#counter{
+    margin-top:25px;
+    opacity:.7;
+}
+
+.saved{
+    margin-top:50px;
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.saved ul{
+    text-align:left;
+}
+
+.back{
+    display:inline-block;
+    margin-top:40px;
+    text-decoration:none;
+    color:white;
+    background:#8d6e63;
+    padding:12px 20px;
+    border-radius:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🎲 Future Date Generator ❤️</h1>
+
+<p class="subtitle">
+Official Connor & Megan Adventure Planner
+</p>
+
+<div class="card">
+
+<div id="category">
+Generate a date
+</div>
+
+<div id="result">
+Press the button below
+</div>
+
+</div>
+
+<button onclick="generateDate()">
+🎲 Generate Date
+</button>
+
+<button onclick="saveDate()">
+❤️ Save This Date
+</button>
+
+<div id="counter">
+Dates Generated: 0
+</div>
+
+<div class="saved">
+<h3>Future Plans</h3>
+<ul id="savedList"></ul>
+</div>
+
+<a class="back" href="index.html">
+Back to Mailbox
+</a>
+
+</div>
+
+<script>
+
+let currentDateIdea = "";
+let spins = 0;
+
+const dates = [
+
+["Classic Date","🍦 Ice cream and a sunset walk."],
+["Classic Date","☕ Coffee and people watching."],
+["Classic Date","🍕 Pizza and a movie."],
+
+["Adventure","🚗 Drive somewhere random and see where we end up."],
+["Adventure","🗺️ Explore a place neither of us has been before."],
+["Adventure","📸 Go take pictures somewhere cool."],
+
+["Lazy Day","🛋️ Blankets, snacks, and absolutely no responsibilities."],
+["Lazy Day","📺 Watch a movie and pretend we're paying attention."],
+["Lazy Day","🍔 Order food and do nothing productive."],
+
+["Orange Cat","🐈 Let the orange cat decide tonight's plans."],
+["Orange Cat","⚖️ Conduct an official chonk inspection."],
+["Orange Cat","🏆 Orange Cat Appreciation Ceremony."],
+
+["Future","❤️ A date where we just enjoy being together."],
+["Future","🎁 Surprise adventure."],
+["Future","🌅 Watch the sunset and talk for hours."],
+
+["Rare","💎 Connor plans everything."],
+["Rare","💎 Megan plans everything."],
+["Rare","💎 No one says 'I don't care, you pick.'"],
+
+["Legendary","📅 July 10."]
+];
+
+function generateDate(){
+
+    const result = document.getElementById("result");
+    const category = document.getElementById("category");
+
+    let animationCount = 0;
+
+    const animation = setInterval(()=>{
+
+        const random =
+            dates[Math.floor(Math.random()*dates.length)];
+
+        category.innerText = random[0];
+        result.innerText = random[1];
+
+        animationCount++;
+
+        if(animationCount > 15){
+
+            clearInterval(animation);
+
+            const finalChoice =
+                dates[Math.floor(Math.random()*dates.length)];
+
+            category.innerText = finalChoice[0];
+            result.innerText = finalChoice[1];
+
+            currentDateIdea = finalChoice[1];
+
+            spins++;
+
+            document.getElementById("counter")
+            .innerText =
+            "Dates Generated: " + spins;
+
+        }
+
+    },70);
+
+}
+
+function saveDate(){
+
+    if(currentDateIdea === "") return;
+
+    const li = document.createElement("li");
+
+    li.innerText = currentDateIdea;
+
+    document.getElementById("savedList")
+    .appendChild(li);
+
+}
+
+</script>
+
+</body>
+</html>
